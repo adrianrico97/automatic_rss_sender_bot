@@ -3,7 +3,8 @@ require 'telegram/bot'
 require 'yaml'
 require_relative '../app/models/posted_new'
 
-config = Hash[YAML.load_file('config/config.yml').map{ |k, v| [k.to_sym, v] }]
+config_path = File.join(__dir__, '..', 'config', 'config.yml')
+config = Hash[YAML.load_file(config_path).map{ |k, v| [k.to_sym, v] }]
 
 # Configuración del bot
 TOKEN = config[:bot_token]

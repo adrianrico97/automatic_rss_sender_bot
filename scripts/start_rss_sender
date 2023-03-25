@@ -1,2 +1,2 @@
 #!/bin/bash
-ruby bin/rss_sender.rb >> log/bot.log
+ruby $(dirname "$0")/../bin/rss_sender.rb

@@ -3,7 +3,8 @@ require 'active_record'
 require_relative '../app/models/posted_new'
 require 'yaml'
 
-database = YAML.load_file('config/database.yml')
+database_config_path = File.join(__dir__, '..', 'config', 'database.yml')
+database = YAML.load_file(database_config_path)
 
 # Establecer la conexión a la base de datos
 ActiveRecord::Base.establish_connection(database["default"])
