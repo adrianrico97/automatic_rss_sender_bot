@@ -8,4 +8,6 @@ database = YAML.load_file('config/database.yml')
 ActiveRecord::Base.establish_connection(database["default"])
 
 # Ejecuta el bot
+puts "Start: #{Time.now}"
 post_news
+puts "End: #{Time.now}"

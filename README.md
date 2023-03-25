@@ -13,6 +13,20 @@ In `config` folder you will find two files:
 * Run `ruby bin/console.rb` to start a console.
 * Run `ruby bin/rss_sender.rb` to check and send the last news from the RSS source to the Telegram channel. You can add this command to `crontab` to automatically send the last news.
 
+## Installation
+
+```bash
+# Install gems
+bundle install
+
+# Run migrations
+ruby bin/migrate.rb
+
+# Run bot
+./scripts/start_rss_sender
+```
+
 ## Pending items
 * Review the code structure
 * Support multiple URLs and multiple channels
+* Improve log
