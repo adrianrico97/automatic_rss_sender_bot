@@ -28,5 +28,4 @@ ruby bin/migrate.rb
 
 ## Pending items
 * Review the code structure
-* Support multiple URLs and multiple channels
 * Improve log

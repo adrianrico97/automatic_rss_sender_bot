@@ -3,6 +3,7 @@ require 'active_record'
 require_relative '../app/models/posted_new'
 require 'yaml'
 
+# Load the database configuration
 database_config_path = File.join(__dir__, '..', 'config', 'database.yml')
 database = YAML.load_file(database_config_path)
 
