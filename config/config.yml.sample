@@ -1,3 +1,9 @@
 bot_token: 'BOT TOKEN'
-channel_id: 'CHANNEL ID'
-rss_feed_url: 'FEED URL'
+
+feeds:
+  -
+    channel_id: 'CHANNEL ID 1'
+    rss_feed_url: 'FEED URL 1'
+  -
+    channel_id: 'CHANNEL ID 2'
+    rss_feed_url: 'FEED URL 2'
