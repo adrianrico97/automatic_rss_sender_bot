@@ -7,6 +7,14 @@ In `config` folder you will find two files:
 * `database.yml`: Database configuration
 * `config.yml`: Bot configuration. This file is in the `.gitignore`. You can follow the `config.yml.sample` to create it.
 
+### Config.yml fields
+
+| Field name | Description |
+|------------|-------------|
+|bot_token   | Bot's token. You can get it asking to @BotFather|
+|channel_id  | Channel ID. If the channel is public the ID is the @name. If the channel is private you can use the JsonDumpBot to get the ID.|
+|rss_feed_url| URL of the RSS feed (where you want to read the news).|
+
 ## Usage
 
 * Run `ruby bin/migrate.rb` to create and update the database.
