@@ -29,13 +29,13 @@ class Bot
           add_sent_news(item)
         end
       end
-      {ok: true}
+      {"ok" => true}
     rescue Telegram::Bot::Exceptions::ResponseError => e
       # A veces ocurre un Too Many Requests cuando hay muchas noticias que enviar
       # Se recupera el error, se imprime y las noticias pendientes se enviarán
       # en la siguiente ronda
       puts "ERROR: #{e}"
-      e
+      JSON.parse(e.response.body)
     end
   end
 

@@ -15,10 +15,17 @@ config = Hash[YAML.load_file(config_path).map{ |k, v| [k.to_sym, v] }]
 puts "Start: #{Time.now}"
 config[:feeds].each do |feed|
   puts "Reading from #{feed["rss_feed_url"]}"
-  Bot.new(
-    config[:bot_token],
-    feed["channel_id"],
-    feed["rss_feed_url"]
-  ).post_news
+  result = {}
+  while !result["ok"]
+    result = Bot.new(
+      config[:bot_token],
+      feed["channel_id"],
+      feed["rss_feed_url"]
+    ).post_news
+    if !result["ok"] && result["error_code"] == "429" # Too Many Requests
+      puts "Trying again in #{result["parameters"]["retry_after"]} seconds"
+      sleep result["parameters"]["retry_after"]
+    end
+  end
 end
 puts "End: #{Time.now}"
