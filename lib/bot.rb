@@ -71,6 +71,9 @@ class Bot
     if txt.include?("<span")
       txt = txt.gsub('<span lang="gl">',"").gsub("</span>","")
     end
+    if txt.include?("<p>")
+      txt = txt.gsub('<p>',"").gsub("</p>","")
+    end
     txt
   end
 
