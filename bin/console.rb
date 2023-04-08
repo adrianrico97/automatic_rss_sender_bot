@@ -1,5 +1,7 @@
 require 'irb'
 require 'active_record'
+require 'rss'
+require 'nokogiri'
 require_relative '../app/models/posted_new'
 require 'yaml'
 

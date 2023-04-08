@@ -9,3 +9,6 @@ gem 'telegram-bot-ruby', '1.0'
 # BB.DD
 gem 'activerecord', '7.0.4.3'
 gem 'sqlite3', '1.6.1'
+
+# Parse HTML
+gem 'nokogiri', '1.14.2'

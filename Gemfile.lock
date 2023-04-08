@@ -43,6 +43,10 @@ GEM
     mini_portile2 (2.8.1)
     minitest (5.18.0)
     multipart-post (2.3.0)
+    nokogiri (1.14.2)
+      mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
+    racc (1.6.2)
     rexml (3.2.5)
     rss (0.2.9)
       rexml
@@ -63,6 +67,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (= 7.0.4.3)
+  nokogiri (= 1.14.2)
   rss (= 0.2.9)
   sqlite3 (= 1.6.1)
   telegram-bot-ruby (= 1.0)

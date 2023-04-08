@@ -1,6 +1,7 @@
 require 'rss'
 require 'telegram/bot'
 require 'yaml'
+require 'nokogiri'
 require_relative '../app/models/posted_new'
 
 class Bot
@@ -68,13 +69,7 @@ class Bot
 
   # Elimina elementos no válidos del texto para Telegram
   def empty_text(txt)
-    if txt.include?("<span")
-      txt = txt.gsub('<span lang="gl">',"").gsub("</span>","")
-    end
-    if txt.include?("<p>")
-      txt = txt.gsub('<p>',"").gsub("</p>","")
-    end
-    txt
+    Nokogiri::HTML(txt).content
   end
 
   # Redacta el cuerpo del mensaje a enviar a Telegram
