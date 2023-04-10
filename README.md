@@ -34,6 +34,15 @@ ruby bin/migrate.rb
 ./scripts/start_rss_sender
 ```
 
+## Tag versions
+```bash
+# Create a tag version
+git tag -a version-YYYYMMDD-vX.Y -m 'Version X.Y'
+
+# Push tags
+git push origin --tags
+```
+
 ## Pending items
 * Review the code structure
 * Improve log
