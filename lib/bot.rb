@@ -26,7 +26,7 @@ class Bot
         # Verifica si la noticia ya ha sido enviada
         unless sent_new?(item)
           item_txt = prepare_item_txt(item)
-          send_message(empty_text(item_txt))
+          send_message(item_txt)
           add_sent_news(item)
         end
       end
@@ -76,11 +76,11 @@ class Bot
   def prepare_item_txt(item)
     txt = ""
     if item.title
-      txt << "<b>#{item.title}</b>"
+      txt << "<b>#{empty_text(item.title)}</b>"
       txt << "\n\n"
     end
     unless item.description.strip.empty?
-      txt << "<i>#{item.description.strip}</i>"
+      txt << "<i>#{empty_text(item.description.strip)}</i>"
       txt << "\n\n"
     end
     if item.link

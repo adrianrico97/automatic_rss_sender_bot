@@ -16,15 +16,19 @@ puts "Start: #{Time.now}"
 config[:feeds].each do |feed|
   puts "Reading from #{feed["rss_feed_url"]}"
   result = {}
-  while !result["ok"]
+  retry_count = 0
+  while !result["ok"] && retry_count < 5
+    retry_count += 1
     result = Bot.new(
       config[:bot_token],
       feed["channel_id"],
       feed["rss_feed_url"]
     ).post_news
-    if !result["ok"] && result["error_code"] == "429" # Too Many Requests
-      puts "Trying again in #{result["parameters"]["retry_after"]} seconds"
+    if !result["ok"] && result["error_code"] == 429 # Too Many Requests
+      puts "Trying again in #{result["parameters"]["retry_after"]} seconds. Retry counter: #{retry_count}"
       sleep result["parameters"]["retry_after"]
+    elsif !result["ok"]
+      puts "ERROR CODE: #{result["error_code"]}. Retry counter: #{retry_count}"
     end
   end
 end
