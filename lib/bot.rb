@@ -44,6 +44,23 @@ class Bot
   # PRIVATE METHODS
   ############################################################
   private
+
+  def get_link(item)
+    if item.is_a?(RSS::Atom::Feed::Entry)
+      item.link.href
+    else
+      item.link
+    end
+  end
+
+  def get_title(item)
+    if item.is_a?(RSS::Atom::Feed::Entry)
+      item.title.content
+    else
+      item.title
+    end
+  end
+
   # Función para enviar mensajes al canal
   def send_message(message)
     Telegram::Bot::Client.run(@token) do |bot|
@@ -53,15 +70,15 @@ class Bot
 
   # Comprueba en BB.DD. si una noticia ya fue enviada
   def sent_new?(item)
-    PostedNew.where(channel_identifier: @channel_id).find_by_link(item.link).present?
+    PostedNew.where(channel_identifier: @channel_id).find_by_link(get_link(item)).present?
   end
 
   # Función para agregar una noticia al archivo de noticias ya enviadas
   def add_sent_news(item)
     # Guardamos en BB.DD el envío
     PostedNew.create!(
-      title: item.title,
-      link: item.link,
+      title: get_title(item),
+      link: get_link(item),
       posted_at: Time.now,
       channel_identifier: @channel_id
     )
@@ -75,16 +92,18 @@ class Bot
   # Redacta el cuerpo del mensaje a enviar a Telegram
   def prepare_item_txt(item)
     txt = ""
-    if item.title
-      txt << "<b>#{empty_text(item.title)}</b>"
+    if get_title(item)
+      txt << "<b>#{empty_text(get_title(item))}</b>"
       txt << "\n\n"
     end
-    unless item.description.strip.empty?
-      txt << "<i>#{empty_text(item.description.strip)}</i>"
-      txt << "\n\n"
+    if item.respond_to?(:description)
+      unless item.description.strip.empty?
+        txt << "<i>#{empty_text(item.description.strip)}</i>"
+        txt << "\n\n"
+      end
     end
-    if item.link
-      txt << item.link
+    if get_link(item)
+      txt << get_link(item)
     end
     txt
   end
