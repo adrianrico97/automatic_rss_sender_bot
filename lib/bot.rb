@@ -38,6 +38,11 @@ class Bot
       puts "ERROR: #{e}"
       JSON.parse(e.response.body)
     end
+  rescue RSS::NotWellFormedError => e
+    # Error porque el feed RSS no está bien formado
+    puts "ERROR en URL '#{@rss_feed_url}': #{e.message}"
+    puts e.backtrace.join("\n")
+    {"ok" => false}
   end
 
   ############################################################
