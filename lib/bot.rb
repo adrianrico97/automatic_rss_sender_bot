@@ -20,7 +20,8 @@ class Bot
 
   # Lee el feed RSS y publica los títulos de las noticias en el canal
   def post_news
-    rss = RSS::Parser.parse(@rss_feed_url)
+    # False parameter avoid the validation: https://github.com/ruby/rss/issues/43
+    rss = RSS::Parser.parse(@rss_feed_url, false)
     begin
       rss.items.each do |item|
         # Verifica si la noticia ya ha sido enviada
@@ -41,6 +42,11 @@ class Bot
   rescue RSS::NotWellFormedError => e
     # Error porque el feed RSS no está bien formado
     puts "ERROR en URL '#{@rss_feed_url}': #{e.message}"
+    puts e.backtrace.join("\n")
+    {"ok" => false}
+  rescue StandardError => e
+    # Error general
+    puts "ERROR: #{e.message}"
     puts e.backtrace.join("\n")
     {"ok" => false}
   end
