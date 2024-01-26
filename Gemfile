@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'rss', '0.2.9'
 
 # Comunicación con Telegram
-gem 'telegram-bot-ruby', '1.0'
+gem 'telegram-bot-ruby', '2.0'
 
 # BB.DD
 gem 'activerecord', '7.0.4.3'
