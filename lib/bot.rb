@@ -27,8 +27,8 @@ class Bot
         # Verifica si la noticia ya ha sido enviada
         unless sent_new?(item)
           item_txt = prepare_item_txt(item)
-          send_message(item_txt)
-          add_sent_news(item)
+          send_message!(item_txt)
+          add_sent_news!(item)
         end
       end
       {"ok" => true}
@@ -73,7 +73,7 @@ class Bot
   end
 
   # Función para enviar mensajes al canal
-  def send_message(message)
+  def send_message!(message)
     Telegram::Bot::Client.run(@token) do |bot|
       bot.api.send_message(chat_id: @channel_id, text: message, parse_mode: 'html')
     end
@@ -85,7 +85,7 @@ class Bot
   end
 
   # Función para agregar una noticia al archivo de noticias ya enviadas
-  def add_sent_news(item)
+  def add_sent_news!(item)
     # Guardamos en BB.DD el envío
     PostedNew.create!(
       title: get_title(item),
@@ -108,8 +108,21 @@ class Bot
       txt << "\n\n"
     end
     if item.respond_to?(:description)
-      unless item.description.strip.empty?
-        txt << "<i>#{empty_text(item.description.strip)}</i>"
+      description = empty_text(item.description.strip)
+      # Limita la descripción a 1000 caracteres (máximo de Telegram: 9500)
+      # Las descripciones demasiado largas son incómodas
+      if description.length > 1000
+        # Si hay varios parrafos, se queda solo con el primero
+        puts "Initial description length: #{description.length}. Truncating to first paragraph."
+        description = description.split("\n").first
+      end
+      # Si la descripción sigue siendo demasiado larga, se trunca
+      if description.length > 1000
+        puts "Description longer than 1000 characters. Truncating."
+        description = "#{description[0..1000]} [...]"
+      end
+      unless description.strip.empty?
+        txt << "<i>#{description}</i>"
         txt << "\n\n"
       end
     end
