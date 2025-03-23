@@ -4,11 +4,11 @@ source 'https://rubygems.org'
 gem 'rss', '0.3.1'
 
 # Comunicación con Telegram
-gem 'telegram-bot-ruby', '2.2'
+gem 'telegram-bot-ruby', '2.4'
 
 # BB.DD
 gem 'activerecord', '7.2.2.1'
-gem 'sqlite3', '1.7.3'
+gem 'sqlite3', '2.6'
 
 # Parse HTML
-gem 'nokogiri', '1.17.2'
+gem 'nokogiri', '1.18.5'
