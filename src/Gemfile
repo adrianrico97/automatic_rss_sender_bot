@@ -11,4 +11,4 @@ gem 'activerecord', '7.2.2.1'
 gem 'sqlite3', '2.6'
 
 # Parse HTML
-gem 'nokogiri', '1.18.5'
+gem 'nokogiri', '1.18.8'

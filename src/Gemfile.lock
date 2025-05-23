@@ -65,7 +65,7 @@ GEM
     multipart-post (2.4.1)
     net-http (0.6.0)
       uri
-    nokogiri (1.18.5)
+    nokogiri (1.18.8)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     racc (1.8.1)
@@ -91,7 +91,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (= 7.2.2.1)
-  nokogiri (= 1.18.5)
+  nokogiri (= 1.18.8)
   rss (= 0.3.1)
   sqlite3 (= 2.6)
   telegram-bot-ruby (= 2.4)
