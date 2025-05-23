@@ -1,4 +1,4 @@
-config/config.yml
-db/bot_db.sqlite3
-log/*
-!log/.keep
+src/config/config.yml
+src/db/bot_db.sqlite3
+src/log/*
+!src/log/.keep
