@@ -1,6 +1,6 @@
 # Use a lightweight Ruby image as the base
 # Consider replacing the image with a specific digest for reproducibility and security.
-FROM ruby:3.3.8-slim-bullseye
+FROM docker.io/ruby:3.3.8-slim-bullseye
 
 # Set the working directory inside the container
 WORKDIR /app

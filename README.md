@@ -34,6 +34,12 @@ ruby bin/migrate.rb
 ./scripts/start_rss_sender
 ```
 
+## Run with Podman
+
+```bash
+podman-compose up
+```
+
 ## Tag versions
 ```bash
 # Create a tag version

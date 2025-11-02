@@ -6,24 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      # Mount the application source code for development
-      - ./src:/app
-      # Persist the SQLite database
+      # SQLite database
       - ./src/db:/app/db
-      # Cache Ruby gems to speed up builds
-      - bundle_cache:/usr/local/bundle
-    # If your application needs specific environment variables, define them here
-    # environment:
-    #   RAILS_ENV: development
-    #   DATABASE_URL: sqlite3:///app/db/bot_db.sqlite3
-    # If your application exposes a web interface, uncomment and configure ports
-    # ports:
-    #   - "3000:3000"
-    # Command to run the application. Overrides the Dockerfile's CMD if specified.
-    # command: ruby bin/rss_sender.rb
-    # Use depends_on if you have other services like a database (e.g., PostgreSQL, MySQL)
-    # depends_on:
-    #   - db
-
-volumes:
-  bundle_cache:
+      # Configuration files
+      - ./src/config:/app/config
