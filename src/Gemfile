@@ -7,8 +7,8 @@ gem 'rss', '0.3.1'
 gem 'telegram-bot-ruby', '2.4'
 
 # BB.DD
-gem 'activerecord', '7.2.2.1'
-gem 'sqlite3', '2.6'
+gem 'activerecord', '~> 7.2'
+gem 'sqlite3', '~> 2.7'
 
 # Parse HTML
-gem 'nokogiri', '1.18.8'
+gem 'nokogiri', '~> 1.18'
